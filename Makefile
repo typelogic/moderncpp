@@ -2,10 +2,10 @@
 all: main
 
 main_s: main.cpp googletest.a
-	$(CXX) -g -Wall -Wextra -lgcov -fprofile-arcs -ftest-coverage $^ -o $@ -Igoogletest/include -Igooglemock/include 
+	$(CXX) -g -Wall -Wextra -pthread -lgcov -fprofile-arcs -ftest-coverage $^ -o $@ -Igoogletest/include -Igooglemock/include 
 
 main_d: main.cpp googletest.so
-	$(CXX) -g -Wall -Wextra -lgcov -fprofile-arcs -ftest-coverage $^ -o $@ -Igoogletest/include -Igooglemock/include 
+	$(CXX) -g -Wall -Wextra -pthread -lgcov -fprofile-arcs -ftest-coverage $^ -o $@ -Igoogletest/include -Igooglemock/include 
 
 googletest.so: gtest-all.o gmock-all.o
 	$(CXX) -shared $^ -o $@
