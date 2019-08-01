@@ -1,7 +1,7 @@
 
 all: main
 
-main: main.cpp googletest.a
+main_s: main.cpp googletest.a
 	$(CXX) -g -Wall -Wextra -lgcov -fprofile-arcs -ftest-coverage $^ -o $@ -Igoogletest/include -Igooglemock/include 
 
 main_d: main.cpp googletest.so
