@@ -1,11 +1,11 @@
 
 all: main
 
-main_s: main.cpp googletest.a
-	$(CXX) $^ -o $@ -Igoogletest/include -Igooglemock/include
+main: main.cpp googletest.a
+	$(CXX) -g -Wall -Wextra -lgcov -fprofile-arcs -ftest-coverage $^ -o $@ -Igoogletest/include -Igooglemock/include 
 
 main_d: main.cpp googletest.so
-	$(CXX) $^ -o $@ -Igoogletest/include -Igooglemock/include
+	$(CXX) -g -Wall -Wextra -lgcov -fprofile-arcs -ftest-coverage $^ -o $@ -Igoogletest/include -Igooglemock/include 
 
 googletest.so: gtest-all.o gmock-all.o
 	$(CXX) -shared $^ -o $@
@@ -20,6 +20,6 @@ googletest.a: gtest-all.o gmock-all.o
 	$(AR) $(ARFLAGS) $@ $^ 
 
 clean:
-	@rm -f *.o *.a *.so *.exe 
+	@rm -f *.o *.a *.so *.exe *.gcno *.gcda
 
 .PHONY: clean
