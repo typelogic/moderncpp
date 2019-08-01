@@ -10,10 +10,10 @@ getcov () {
     lcov --capture --directory . --output-file result.info
     mkdir -p $tmpdir
     genhtml result.info --output-directory $tmpdir
-    pushd $tmpdir/
+    cd $tmpdir/
     echo "[$tmpdir]"
     python2.7 -m SimpleHTTPServer
-    popd
+    cd -
 }
 
 getcov
